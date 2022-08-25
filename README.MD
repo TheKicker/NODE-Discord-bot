@@ -34,8 +34,20 @@ https://discord.js.org/#/
 
 CLIENT_MISSING_INTENTS
     - Fix (<a href="https://stackoverflow.com/questions/68694195/how-do-i-fix-client-missing-intents-error">link</a>) is to add GatewayIntentBits to several lines
-    
+
 ```
 const { Client, GatewayIntentBits } = require('discord.js')
 const sigma = new Client({ intents: [GatewayIntentBits.Guilds] });
+```
+
+Message.content is empty but everything else is there 
+    - Fix (<a href="https://stackoverflow.com/questions/73036854/message-content-doesnt-have-any-value-in-discord-js-v14">link</a>) is to add GatewayIntentBits.MessageContent
+    
+```
+'intents': [
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildBans,
+    GatewayIntentBits.GuildMessages
+  ]
 ```

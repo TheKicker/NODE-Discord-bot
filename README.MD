@@ -29,3 +29,13 @@ Discord.js Documentation
 ```
 https://discord.js.org/#/
 ```
+
+## Bugs
+
+CLIENT_MISSING_INTENTS
+    - Fix (<a href="https://stackoverflow.com/questions/68694195/how-do-i-fix-client-missing-intents-error">link</a>) is to add GatewayIntentBits to several lines
+    
+```
+const { Client, GatewayIntentBits } = require('discord.js')
+const sigma = new Client({ intents: [GatewayIntentBits.Guilds] });
+```

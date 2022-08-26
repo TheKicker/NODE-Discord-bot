@@ -1,11 +1,10 @@
 require('dotenv').config();
 const tok = process.env.DISCORD_BOT_TOKEN
 
-const { Client, GatewayIntentBits, ActivityType } = require('discord.js')
+const { Client, GatewayIntentBits, ActivityType, ModalSubmitFields } = require('discord.js')
 const sigma = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.MessageContent] });
 
 sigma.on("ready", ()=>{
-
     // random activity 
     r = Math.floor(Math.random() * 4)
     if(r === 0){
@@ -17,11 +16,12 @@ sigma.on("ready", ()=>{
     } else {
         sigma.user.setActivity('Rainbow 6 Siege', { type: ActivityType.Playing });
     }
-    
+
     console.log(`${sigma.user.tag} just landed! R${r}`)
 })
 
 sigma.on('messageCreate', msg => {
+
     // Prevent the bot from responding to itself and potentially becoming sentient
     if(msg.author.bot){return}
 
@@ -29,7 +29,8 @@ sigma.on('messageCreate', msg => {
     m = msg.content.toLowerCase()
 
     if(m === "hello"){
-        msg.channel.send(`Hello to you too, ${msg.author}`)
+        msg.channel.sendTyping()
+        setTimeout(()=>{ msg.channel.send(`Hello to you ${msg.author.username}`) }, Math.floor(Math.random() * 10000))
     }
     
     if(m.startsWith("beans")){
